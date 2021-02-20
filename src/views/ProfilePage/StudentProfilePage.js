@@ -69,7 +69,7 @@ export default function ProfilePage(props) {
                   <div className={classes.name}>
                     <h3 className={classes.title}>name</h3>
                     <h5>email</h5>
-                    <h6>location</h6>
+                    <h6>major @ college graduation_year from location</h6>
                     {/* }<Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
