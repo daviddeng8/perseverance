@@ -9,7 +9,7 @@ app.get('/', function(req, res) {
 })*/
 
 //mongoose connection test 
-mongoose.connect('mongodb://localhost/test',{useNewUrlParser: true, useUnifiedTopology : true})
+mongoose.connect('mongodb+srv://perseverance:githappens@perseverance.zi6ah.mongodb.net/users?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology : true})
 .then(() => console.log('connected,,'))
 .catch((err)=> console.log(err));
 
@@ -22,7 +22,6 @@ app.use(express.urlencoded({extended : false}));
 //Routes
 app.use('/',require('./routes/render'));
 app.use('/users',require('./routes/users'));
-
 
 
 
