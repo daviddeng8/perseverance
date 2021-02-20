@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
-const StudentUserSchema = new mongoose.Schema({
-    first_name: {
-        type: String,
-        required: true,
-    },
-    last_name: {
+const EmployerUserSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true,
     },
@@ -24,18 +20,6 @@ const StudentUserSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-    college: {
-        type: String,
-        required: true,
-    }
-    graduation_year: {
-        type: Number,
-        required: true,
-    }
-    resume: {
-        type: String,
-        required: true,
-    }
     date: {
         type: Date,
         default: Date.now,
@@ -43,6 +27,6 @@ const StudentUserSchema = new mongoose.Schema({
 
 });
 
-const User = mongoose.model('StudentUser', StudentUserSchema);
+const User = mongoose.model('EmployerUser', EmployerUserSchema);
 
 module.exports = User;
