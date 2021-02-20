@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 //package for hashing passwords 
 const bcrypt = require('bcrypt');
@@ -84,9 +85,12 @@ router.post('/register', (req, res) => {
 });
 
 //posting the login 
-router.post('/login',(req,res,next)=>{
-
-});
+router.post('/login', (req,res,next) => {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/users/login',
+    })(req, res, next);
+})
 
 //logout
 router.get('/logout',(req,res)=>{
