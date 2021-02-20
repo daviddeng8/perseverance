@@ -18,26 +18,32 @@ const StudentUserSchema = new mongoose.Schema({
     }
     location: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     }
     summary: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     }
     college: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     }
     graduation_year: {
         type: Number,
-        required: true,
+        required: false,
+        default: 0,
     }
     resume: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     }
     date: {
         type: Date,
+        required: true,
         default: Date.now,
     }
 

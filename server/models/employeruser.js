@@ -14,14 +14,17 @@ const EmployerUserSchema = new mongoose.Schema({
     }
     location: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     }
     summary: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     }
     date: {
         type: Date,
+        required: true,
         default: Date.now,
     }
 
