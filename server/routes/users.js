@@ -11,7 +11,7 @@ const StudentUser = require('../models/student_user.js');
 const EmployerUser = require('../models/employer_user.js');
 
 //login handle
-router.get('/login', (req,res)=>{
+router.get('/login', (req,res) => {
     res.render('login');
 });
 
@@ -19,6 +19,7 @@ router.get('/register', (req,res)=>{
     res.render('register')
 });
 
+//at login you should redirected to your profile page 
 
 //posting the new account credentials at localhost:8000/users/register
 router.post('/register', (req, res) => {
@@ -85,7 +86,6 @@ router.post('/register', (req, res) => {
             }
         ));
     }
-
 });
 
 
@@ -164,5 +164,29 @@ router.get('/logout',(req,res)=>{
 });
 
 
+//displaying profile
+router.get('/:email', (req, res) => {
+    StudentUser.findOne({email: req.params.email}).
+    then((user) => {
+        if (!user) {
+            res.send({
+                msg: "User not found!"
+            });
+            return {msg: "No user with this email was found."}
+        }
+        else {
+            res.send({
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                summary: user.summary,
+                location: user.location,
+                graduation_year: user.graduation_year,
+                college: user.college,
+            });
+            //console.log(user.first_name + " " + user.last_name + " " + user.email);
+        }
+    })
+});
 
 module.exports  = router;
