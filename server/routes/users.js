@@ -5,7 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 //studentUser model
-const StudentUser = require('../models/studentuser.js');
+const StudentUser = require('../models/student_user.js');
 
 //login handle
 router.get('/login', (req,res)=>{
@@ -58,14 +58,27 @@ router.post('/register', (req, res) => {
     else {
         //user not saved here, user will be saved after password encryption
         const newUser = new StudentUser({
-            firstName: firstName, 
-            lastName: lastName,
+            first_name: firstName, 
+            last_name: lastName,
             email: email,
             password: password
         });
 
         //hash the password 
+        bcrypt.genSalt(10, (err, salt) =>
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) throw err;
 
+                //hash password and then save it, printing out the values to console afterwards 
+                newUser.password = hash;
+                newUser.save().then((value) => {
+                    console.log(value);
+                    res.redirect('/users/login');
+                })
+                .catch(value => console.log(value));
+
+            }
+        ));
     }
 
 });
