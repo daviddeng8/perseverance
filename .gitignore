@@ -1,3 +1,7 @@
 # Untrack folders
 node_modules/
 .DS_Store
+
+
+#environment 
+.env
