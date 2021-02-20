@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+//package for hashing passwords 
+const bcrypt = require('bcrypt');
+
 //studentUser model
 const StudentUser = require('../models/studentuser.js');
 
@@ -59,7 +62,10 @@ router.post('/register', (req, res) => {
             lastName: lastName,
             email: email,
             password: password
-        })
+        });
+
+        //hash the password 
+
     }
 
 });
