@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -32,21 +32,9 @@ import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
-import axios from 'axios';
-
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
-  const [result, setResult] = useState(null);
-  useEffect(() => {
-    async function getData() {
-      console.log(props.match.params.student_user);
-      const data = await axios.get("http://localhost:8000/users/" + props.match.params.student_user);
-      setResult(data.data);
-    }
-    getData();
-  }, [])
-
   const classes = useStyles();
   const { ...rest } = props;
   const imageClasses = classNames(
@@ -55,9 +43,6 @@ export default function ProfilePage(props) {
     classes.imgFluid
   );
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
-  if(result === null) {
-    return "loading";
-  }
   return (
     <div>
       <Header
@@ -82,9 +67,9 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>{result.first_name} {result.last_name}</h3>
-                    <h4>{result.location}</h4>
-                    <h5>{result.email}</h5>
+                    <h3 className={classes.title}>name</h3>
+                    <h5>major @ college graduation_year from location</h5>
+                    <h6>email</h6>
                     {/* }<Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
@@ -100,7 +85,7 @@ export default function ProfilePage(props) {
             </GridContainer>
             <div className={classes.description}>
               <p>
-                {result.summary}{" "}
+                summary{" "}
               </p>
             </div>
             {/* }<GridContainer justify="center">
