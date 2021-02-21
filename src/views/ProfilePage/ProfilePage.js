@@ -40,12 +40,12 @@ export default function ProfilePage(props) {
   const [result, setResult] = useState(null);
   useEffect(() => {
     async function getData() {
-      const data = await axios.get('http://localhost:8000/users/nabeelshaikh@ucla.edu');
+      console.log(props.match.params.student_user);
+      const data = await axios.get("http://localhost:8000/users/" + props.match.params.student_user);
       setResult(data.data);
     }
     getData();
   }, [])
-  console.log(result);
 
   const classes = useStyles();
   const { ...rest } = props;
