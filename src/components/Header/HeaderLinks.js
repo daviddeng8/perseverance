@@ -26,6 +26,16 @@ export default function HeaderLinks(props) {
   const classes = useStyles();
   return (
     <List className={classes.list}>
+      <ListItem className={classes.listItem}>
+        <Link to="/student-signup" className={classes.dropdownLink}>
+                Student Signup
+        </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Link to="/employer-signup" className={classes.dropdownLink}>
+                Employer Signup
+        </Link>
+      </ListItem>
       {/* <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
@@ -49,16 +59,6 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem> */}
-      <ListItem className={classes.listItem}>
-        <Link to="/student-signup" className={classes.dropdownLink}>
-                Student Signup
-        </Link>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Link to="/employer-signup" className={classes.dropdownLink}>
-                Employer Signup
-        </Link>
-      </ListItem>
       {/* <ListItem className={classes.listItem}>
         <Button
           href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
