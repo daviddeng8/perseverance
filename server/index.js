@@ -31,8 +31,8 @@ app.use(expressEjsLayout);
 app.use(express.urlencoded({extended : false}));
 
 //Routes
-app.use('/',require('./routes/render'));
-app.use('/users',require('./routes/users'));
+app.use('/', require('./routes/render'));
+app.use('/users', require('./routes/users'));
 
 
 
