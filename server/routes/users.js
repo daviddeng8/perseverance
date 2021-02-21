@@ -152,7 +152,7 @@ router.get('/logout',(req,res)=>{
 
 
 //displaying profile
-router.get('/:email', (req, res) => {
+router.get('/students/:email', (req, res) => {
     StudentUser.findOne({email: req.params.email}).
     then((user) => {
         if (!user) {
@@ -175,5 +175,28 @@ router.get('/:email', (req, res) => {
         }
     })
 });
+
+//displaying profile
+router.get('/employers/:email', (req, res) => {
+    EmployerUser.findOne({email: req.params.email}).
+    then((user) => {
+        if (!user) {
+            res.send({
+                msg: "User not found!"
+            });
+            return {msg: "No user with this email was found."}
+        }
+        else {
+            res.send({
+                name: user.name,
+                email: user.email,
+                summary: user.summary,
+                location: user.location,
+            });
+            //console.log(user.first_name + " " + user.last_name + " " + user.email);
+        }
+    })
+});
+
 
 module.exports  = router;
