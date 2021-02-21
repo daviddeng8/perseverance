@@ -85,6 +85,10 @@ export default function ProfilePage(props) {
                     <h3 className={classes.title}>{result.first_name} {result.last_name}</h3>
                     <h4>{result.location}</h4>
                     <h5>{result.email}</h5>
+                    <br></br>
+                    <p>
+                      {result.summary}{" "}
+                    </p>
                     {/* }<Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
@@ -99,9 +103,7 @@ export default function ProfilePage(props) {
               </GridItem>
             </GridContainer>
             <div className={classes.description}>
-              <p>
-                {result.summary}{" "}
-              </p>
+
             </div>
             {/* }<GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
