@@ -23,16 +23,16 @@ const useStyles = makeStyles(styles);
 export default function SectionLogin() {
   const classes = useStyles();
   return (
-    <div className={classes.section}>
-      <div className={classes.container}>
-        <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={4}>
+    // <div className={classes.section}>
+      // <div className={classes.container}>
+        <GridContainer justify="flex-end" display="inline-block">
+          <GridItem xs={3} sm={3} md={4}>
             <Card>
               <form className={classes.form}>
                 <CardHeader color="primary" className={classes.cardHeader}>
                   <h4>Login</h4>
                   <div className={classes.socialLine}>
-                    <Button
+                    {/* <Button
                       justIcon
                       href="#pablo"
                       target="_blank"
@@ -62,12 +62,11 @@ export default function SectionLogin() {
                           classes.socialIcons + " fab fa-google-plus-g"
                         }
                       />
-                    </Button>
+                    </Button> */}
                   </div>
                 </CardHeader>
-                <p className={classes.divider}>Or Be Classical</p>
                 <CardBody>
-                  <CustomInput
+                  {/* <CustomInput
                     labelText="First Name..."
                     id="first"
                     formControlProps={{
@@ -81,7 +80,7 @@ export default function SectionLogin() {
                         </InputAdornment>
                       )
                     }}
-                  />
+                  /> */}
                   <CustomInput
                     labelText="Email..."
                     id="email"
@@ -118,14 +117,14 @@ export default function SectionLogin() {
                 </CardBody>
                 <CardFooter className={classes.cardFooter}>
                   <Button simple color="primary" size="lg">
-                    Get started
+                    Login
                   </Button>
                 </CardFooter>
               </form>
             </Card>
           </GridItem>
         </GridContainer>
-      </div>
-    </div>
+      // </div>
+    // </div>
   );
 }
