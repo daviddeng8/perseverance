@@ -41,7 +41,7 @@ export default function ProfilePage(props) {
   useEffect(() => {
     async function getData() {
       console.log(props.match.params.student_user);
-      const data = await axios.get("http://localhost:8000/users/" + props.match.params.student_user);
+      const data = await axios.get("http://localhost:8000/users/students/" + props.match.params.student_user);
       setResult(data.data);
     }
     getData();
