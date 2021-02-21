@@ -50,12 +50,12 @@ export default function HeaderLinks(props) {
         />
       </ListItem> */}
       <ListItem className={classes.listItem}>
-        <Link to="/" className={classes.dropdownLink}>
+        <Link to="/student-signup" className={classes.dropdownLink}>
                 Student Signup
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/" className={classes.dropdownLink}>
+        <Link to="/employer-signup" className={classes.dropdownLink}>
                 Employer Signup
         </Link>
       </ListItem>

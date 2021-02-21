@@ -23,20 +23,20 @@ router.get('/register', (req,res)=>{
 
 //posting the new account credentials at localhost:8000/users/register
 router.post('/registerStudents', (req, res) => {
-    const {firstName, lastName, email, password, password2} = req.body;
-    
+    const {firstName, lastName, email, password} = req.body;
+    console.log(req.body);
     let errors = [];
 
-    if (!firstName || !lastName || !email || !password || !password2) {
+    if (!firstName || !lastName || !email || !password) {
         errors.push({error: "Error – you need to fill in all fields."});
     }
 
-    console.log('name: ' + firstName + ' ' + lastName + ' email: ' + email + ' password: ' + password + ' newpass: ' + password2);
+    // console.log('name: ' + firstName + ' ' + lastName + ' email: ' + email + ' password: ' + password);
 
     //next in the error hierarchy, the passwords don't match
-    if (password !== password2) {
-        errors.push({error: "Error – the passwords do not match."});
-    }
+    // if (password ) {
+    //     errors.push({error: "Error – the passwords do not match."});
+    // }
 
     if (password.length < 8) {
         errors.push({error: "Error – password lengths must be 8 characters or more."});
@@ -68,6 +68,7 @@ router.post('/registerStudents', (req, res) => {
                 newUser.password = hash;
                 newUser.save().then((value) => {
                     console.log(value);
+                    res.status(200, 'success!');
                     //res.redirect('/users/login');
                 })
                 .catch(value => console.log(value));
@@ -79,21 +80,21 @@ router.post('/registerStudents', (req, res) => {
 
 
 //endpoint for posting creation of an employer account 
-router.post('/registerEmployees', (req, res) => {
-    const {companyName, email, password, password2} = req.body;
+router.post('/registerEmployers', (req, res) => {
+    const {companyName, email, password} = req.body;
     
     let errors = [];
 
-    if (!companyName || !email || !password || !password2) {
+    if (!companyName || !email || !password) {
         errors.push({msg: "Error – you need to fill in all fields."});
     }
 
-    console.log('name: ' + comapnyName + ' email: ' + email + ' password: ' + password + ' newpass: ' + password2);
+    console.log('name: ' + companyName + ' email: ' + email + ' password: ' + password);
 
     //next in the error hierarchy, the passwords don't match
-    if (password !== password2) {
-        errors.push({msg: "Error – the passwords do not match."});
-    }
+    // if (password != password2) {
+    //     errors.push({msg: "Error – the passwords do not match."});
+    // }
 
     if (password.length < 8) {
         errors.push({msg: "Error – password lengths must be 8 characters or more."});
@@ -125,6 +126,7 @@ router.post('/registerEmployees', (req, res) => {
                 newUser.password = hash;
                 newUser.save().then((value) => {
                     console.log(value);
+                    res.status(200, 'success!');
                     res.redirect('/users/login');
                 })
                 .catch(value => console.log(value));

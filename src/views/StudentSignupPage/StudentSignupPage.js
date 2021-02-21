@@ -57,15 +57,13 @@ export default function StudentSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post('localhost:8000/users/register', { firstName, lastName, email, password });
+      const data = await axios.post('http://localhost:8000/users/registerStudents', { firstName, lastName, email, password });
       console.log(data);
     } catch (e) {
       console.log(e);
     }
   }
-// render(){
-    
-// }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -74,7 +72,7 @@ export default function StudentSignup() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Student Sign up
         </Typography>
             <form onSubmit={handleSubmit} className={classes.form} noValidate>
             <Grid container spacing={2}>

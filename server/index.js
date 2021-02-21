@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 //stuff for the dummy frontend 
 const expressEjsLayout = require('express-ejs-layouts');
@@ -14,6 +16,8 @@ const passport = require('passport');
 
 //importing passport configuration file 
 require("./config/passport")(passport);
+
+app.use(cors());
 
 //initializing the pasport 
 app.use(passport.initialize());
@@ -29,6 +33,10 @@ app.set('view engine','ejs');
 app.use(expressEjsLayout);
 //BodyParser
 app.use(express.urlencoded({extended : false}));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: false
+  }));
 
 //Routes
 app.use('/',require('./routes/render'));
