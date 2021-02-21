@@ -1,59 +1,82 @@
-import React, { Component } from 'react';
+import React, { Component, useState }  from 'react';
+import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-class StudentSignup extends Component {
-    handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log('hit');
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="#">
+        perseverance
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function StudentSignup() {
+// class Signup extends Component {
+  const classes = useStyles();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await axios.post('localhost:8000/users/register', { firstName, lastName, email, password });
+      console.log(data);
+    } catch (e) {
+      console.log(e);
     }
-
-    updateFirstName = async (e) => {
-        console.log('hit');
-    }
-
-    // useStyles = makeStyles((theme) => ({
-    //     paper: {
-    //       marginTop: theme.spacing(8),
-    //       display: 'flex',
-    //       flexDirection: 'column',
-    //       alignItems: 'center',
-    //     },
-    //     avatar: {
-    //       margin: theme.spacing(1),
-    //       backgroundColor: theme.palette.secondary.main,
-    //     },
-    //     form: {
-    //       width: '100%', // Fix IE 11 issue.
-    //       marginTop: theme.spacing(3),
-    //     },
-    //     submit: {
-    //       margin: theme.spacing(3, 0, 2),
-    //     },
-    //   }));
-
-    render(){
-        // const classes = this.useStyles();
-        return (
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-      {/* <div className={classes.paper}> */}
-        {/* <Avatar className={classes.avatar}>
+  }
+// render(){
+    
+// }
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar> */}
+        </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-            <form onSubmit={this.handleSubmit} noValidate>
+            <form onSubmit={handleSubmit} className={classes.form} noValidate>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                 <TextField
@@ -65,7 +88,7 @@ class StudentSignup extends Component {
                     id="firstName"
                     label="First Name"
                     autoFocus
-                    onChange={ this.updateFirstName()}
+                    onChange={ e=>setFirstName(e.target.value)}
                 />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -77,7 +100,7 @@ class StudentSignup extends Component {
                     label="Last Name"
                     name="lastName"
                     autoComplete="lname"
-                    // onChange={ e=>setLastName(e.target.value)}
+                    onChange={ e=>setLastName(e.target.value)}
                 />
                 </Grid>
                 <Grid item xs={12}>
@@ -89,7 +112,7 @@ class StudentSignup extends Component {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    // onChange={ e=>setEmail(e.target.value)}
+                    onChange={ e=>setEmail(e.target.value)}
                 />
                 </Grid>
                 <Grid item xs={12}>
@@ -102,7 +125,7 @@ class StudentSignup extends Component {
                     type="password"
                     id="password"
                     autoComplete="current-password"
-                    // onChange={ e=>setPassword(e.target.value)}
+                    onChange={ e=>setPassword(e.target.value)}
                 />
                 </Grid>
             </Grid>
@@ -111,8 +134,8 @@ class StudentSignup extends Component {
                 fullWidth
                 variant="contained"
                 color="primary"
-                // className={submit}
-                onClick={this.handleSubmit}
+                className={classes.submit}
+                onClick={handleSubmit}
             >
                 Sign Up
             </Button>
@@ -124,14 +147,13 @@ class StudentSignup extends Component {
                 </Grid>
             </Grid>
             </form>
-      {/* </div> */}
+      </div>
       <Box mt={5}>
-        {/* <Copyright /> */}
+        <Copyright />
       </Box>
-            </Container>
-
-        )
-    }
+    </Container>
+  );
 }
 
-export default StudentSignup
+
+// export default 
