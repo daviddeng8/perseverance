@@ -11,22 +11,25 @@ const EmployerUserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
     location: {
         type: String,
-        required: true,
-    }
+        required: false,
+        default: "",
+    },
     summary: {
         type: String,
-        required: true,
-    }
+        required: false,
+        default: "",
+    },
     date: {
         type: Date,
+        required: true,
         default: Date.now,
     }
 
 });
 
-const User = mongoose.model('EmployerUser', EmployerUserSchema);
+const User = mongoose.model('Employer_User', EmployerUserSchema);
 
 module.exports = User;

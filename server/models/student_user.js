@@ -15,34 +15,40 @@ const StudentUserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
     location: {
         type: String,
-        required: true,
-    }
+        required: false,
+        default: "",
+    },
     summary: {
         type: String,
-        required: true,
-    }
+        required: false,
+        default: "",
+    },
     college: {
         type: String,
-        required: true,
-    }
+        required: false,
+        default: "",
+    },
     graduation_year: {
         type: Number,
-        required: true,
-    }
+        required: false,
+        default: 0,
+    },
     resume: {
         type: String,
-        required: true,
-    }
+        required: false,
+        default: "",
+    },
     date: {
         type: Date,
+        required: true,
         default: Date.now,
     }
 
 });
 
-const User = mongoose.model('StudentUser', StudentUserSchema);
+const User = mongoose.model('Student_User', StudentUserSchema);
 
 module.exports = User;
