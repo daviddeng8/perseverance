@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -32,9 +32,21 @@ import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
+import axios from 'axios';
+
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
+  const [result, setResult] = useState(null);
+  useEffect(() => {
+    async function getData() {
+      const data = await axios.get('http://localhost:8000/users/nabeelshaikh@ucla.edu');
+      setResult(data.data);
+    }
+    getData();
+  }, [])
+  console.log(result);
+
   const classes = useStyles();
   const { ...rest } = props;
   const imageClasses = classNames(
@@ -43,6 +55,9 @@ export default function ProfilePage(props) {
     classes.imgFluid
   );
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+  if(result === null) {
+    return "loading";
+  }
   return (
     <div>
       <Header
@@ -67,9 +82,9 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>name</h3>
-                    <h4>location</h4>
-                    <h5>email</h5>
+                    <h3 className={classes.title}>{result.first_name} {result.last_name}</h3>
+                    <h4>{result.location}</h4>
+                    <h5>{result.email}</h5>
                     {/* }<Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
@@ -85,7 +100,7 @@ export default function ProfilePage(props) {
             </GridContainer>
             <div className={classes.description}>
               <p>
-                summary{" "}
+                {result.summary}{" "}
               </p>
             </div>
             {/* }<GridContainer justify="center">
